@@ -1,4 +1,4 @@
-Flask>=2.3.2
+Flask==2.3.2
 Flask-Cors==3.0.10
 matplotlib==3.8.0
 numpy==1.23.5
@@ -8,7 +8,7 @@ kneed==0.8.1
 xgboost==1.7.6
 Flask-MonitoringDashboard==3.0.6
 Jinja2==3.1.4
-Werkzeug>=2.3.3  # Adjust based on Flask's requirements
+Werkzeug>=2.3.3
 itsdangerous==2.1.2
 certifi==2023.7.22
 MarkupSafe==2.1.3
