@@ -1,4 +1,4 @@
-Flask==2.3.2
+Flask
 Flask-Cors
 matplotlib
 numpy
@@ -8,7 +8,7 @@ kneed
 xgboost
 Flask-MonitoringDashboard
 Jinja2
-Werkzeug>=2.3.3
+Werkzeug
 itsdangerous
 certifi
 MarkupSafe
