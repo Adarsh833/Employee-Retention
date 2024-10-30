@@ -9,25 +9,6 @@ from apps.core.logger import Logger
 
 
 class LoadValidate:
-    """
-    *****************************************************************************
-    *
-    * filename:       LoadValidate.py
-    * version:        1.0
-    * author:         CODESTUDIO
-    * creation date:  05-MAY-2020
-    *
-    * change history:
-    *
-    * who             when           version  change (include bug# if apply)
-    * ----------      -----------    -------  ------------------------------
-    * codestudio      05-MAY-2020    1.0      initial creation
-    *
-    *
-    * description:    Class to load, validate and transform the data
-    *
-    ****************************************************************************
-    """
 
     def __init__(self,run_id,data_path,mode):
         self.run_id = run_id
@@ -36,18 +17,7 @@ class LoadValidate:
         self.dbOperation = DatabaseOperation(self.run_id, self.data_path, mode)
 
     def values_from_schema(self,schema_file):
-        """
-        * method: values_from_schema
-        * description: method to read schema file
-        * return: column_names, Number of Columns
-        *
-        * who             when           version  change (include bug# if apply)
-        * ----------      -----------    -------  ------------------------------
-        * bcheekati       05-MAY-2020    1.0      initial creation
-        *
-        * Parameters
-        *   none:
-        """
+
         try:
             self.logger.info('Start of Reading values From Schema...')
             with open('apps/database/'+schema_file+'.json', 'r') as f:
@@ -68,18 +38,7 @@ class LoadValidate:
         return column_names, number_of_columns
 
     def validate_column_length(self,number_of_columns):
-        """
-        * method: validate_column_length
-        * description: method to validates the number of columns in the csv files
-        * return: none
-        *
-        * who             when           version  change (include bug# if apply)
-        * ----------      -----------    -------  ------------------------------
-        * bcheekati       05-MAY-2020    1.0      initial creation
-        *
-        * Parameters
-        *   NumberofColumns:
-        """
+       
         try:
             self.logger.info('Start of Validating Column Length...')
             for file in listdir(self.data_path):
@@ -99,19 +58,7 @@ class LoadValidate:
             raise e
 
     def validate_missing_values(self):
-        """
-        * method: validate_missing_values
-        * description: method to validates if any column in the csv file has all values missing.
-        *              If all the values are missing, the file is not suitable for processing. it to be moved to bad file
-        * return: none
-        *
-        * who             when           version  change (include bug# if apply)
-        * ----------      -----------    -------  ------------------------------
-        * bcheekati       05-MAY-2020    1.0      initial creation
-        *
-        * Parameters
-        *   none:
-        """
+     
         try:
             self.logger.info('Start of Validating Missing Values...')
             for file in listdir(self.data_path):
@@ -133,18 +80,7 @@ class LoadValidate:
             raise e
 
     def replace_missing_values(self):
-        """
-        * method: replace_missing_values
-        * description: method to replaces the missing values in columns with "NULL"
-        * return: none
-        *
-        * who             when           version  change (include bug# if apply)
-        * ----------      -----------    -------  ------------------------------
-        * bcheekati       05-MAY-2020    1.0      initial creation
-        *
-        * Parameters
-        *   none:
-        """
+
         try:
             self.logger.info('Start of Replacing Missing Values with NULL...')
             only_files = [f for f in listdir(self.data_path)]
@@ -158,18 +94,7 @@ class LoadValidate:
             self.logger.exception('Exception raised while Replacing Missing Values with NULL: %s' % e)
 
     def archive_old_files(self):
-        """
-        * method: archive_old_rejects
-        * description: method to archive rejected files
-        * return: none
-        *
-        * who             when           version  change (include bug# if apply)
-        * ----------      -----------    -------  ------------------------------
-        * bcheekati       05-MAY-2020    1.0      initial creation
-        *
-        * Parameters
-        *   none:
-        """
+       
         now = datetime.now()
         date = now.date()
         time = now.strftime("%H%M%S")
@@ -242,18 +167,7 @@ class LoadValidate:
             raise e
 
     def move_processed_files(self):
-        """
-        * method: move_processed_files
-        * description: method to move processed files
-        * return: none
-        *
-        * who             when           version  change (include bug# if apply)
-        * ----------      -----------    -------  ------------------------------
-        * bcheekati       05-MAY-2020    1.0      initial creation
-        *
-        * Parameters
-        *   none:
-        """
+       
         try:
             self.logger.info('Start of Moving Processed Files...')
             for file in listdir(self.data_path):
@@ -266,18 +180,7 @@ class LoadValidate:
             raise e
 
     def validate_trainset(self):
-        """
-        * method: validate
-        * description: method to validate the data
-        * return: none
-        *
-        * who             when           version  change (include bug# if apply)
-        * ----------      -----------    -------  ------------------------------
-        * bcheekati       05-MAY-2020    1.0      initial creation
-        *
-        * Parameters
-        *   none:
-        """
+      
         try:
             self.logger.info('Start of Data Load, validation and transformation')
             # archive old  files
@@ -304,18 +207,7 @@ class LoadValidate:
             raise Exception
 
     def validate_predictset(self):
-        """
-        * method: validate
-        * description: method to validate the predict data
-        * return: none
-        *
-        * who             when           version  change (include bug# if apply)
-        * ----------      -----------    -------  ------------------------------
-        * bcheekati       05-MAY-2020    1.0      initial creation
-        *
-        * Parameters
-        *   none:
-        """
+        
         try:
             self.logger.info('Start of Data Load, validation and transformation')
             # archive old rejected files

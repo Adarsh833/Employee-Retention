@@ -4,26 +4,7 @@ import logging
 
 
 class Logger:
-    """
-    *****************************************************************************
-    *
-    * filename:       logger.py
-    * version:        1.0
-    * author:         CODESTUDIO
-    * creation date:  05-MAY-2020
-    *
-    * change history:
-    *
-    * who             when           version  change (include bug# if apply)
-    * ----------      -----------    -------  ------------------------------
-    * bcheekati       05-MAY-2020    1.0      initial creation
-    *
-    *
-    * description:    Class to generate logs
-    *
-    ****************************************************************************
-    """
-
+   
     def __init__(self,run_id,log_module,log_file_name):
         self.logger = logging.getLogger(str(log_module)+'_' + str(run_id))
         self.logger.setLevel(logging.DEBUG)

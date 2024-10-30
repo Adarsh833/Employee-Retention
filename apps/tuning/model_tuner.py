@@ -7,25 +7,7 @@ from apps.core.logger import Logger
 from sklearn.metrics import r2_score
 
 class ModelTuner:
-    """
-    *****************************************************************************
-    *
-    * filename:       model_tuner.py
-    * version:        1.0
-    * author:         CODESTUDIO
-    * creation date:  05-MAY-2020
-    *
-    * change history:
-    *
-    * who             when           version  change (include bug# if apply)
-    * ----------      -----------    -------  ------------------------------
-    * bcheekati       05-MAY-2020    1.0      initial creation
-    *
-    *
-    * description:    Class to tune and select best model
-    *
-    ****************************************************************************
-    """
+
     def __init__(self,run_id,data_path,mode):
         self.run_id = run_id
         self.data_path = data_path
@@ -34,20 +16,7 @@ class ModelTuner:
         self.xgb = XGBClassifier(objective='binary:logistic')
 
     def best_params_randomforest(self,train_x,train_y):
-        """
-        * method: best_params_randomforest
-        * description: method to get the parameters for Random Forest Algorithm which give the best accuracy.
-                                             Use Hyper Parameter Tuning.
-        * return: The model with the best parameters
-        *
-        * who             when           version  change (include bug# if apply)
-        * ----------      -----------    -------  ------------------------------
-        * bcheekati       05-MAY-2020    1.0      initial creation
-        *
-        * Parameters
-        *   train_x:
-        *   train_y:
-        """
+      
         try:
             self.logger.info('Start of finding best params for randomforest algo...')
             # initializing with different combination of parameters
@@ -79,20 +48,7 @@ class ModelTuner:
             raise Exception()
 
     def best_params_xgboost(self,train_x,train_y):
-        """
-        * method: best_params_xgboost
-        * description: method to get the parameters for XGBoost Algorithm which give the best accuracy.
-                                             Use Hyper Parameter Tuning.
-        * return: The model with the best parameters
-        *
-        * who             when           version  change (include bug# if apply)
-        * ----------      -----------    -------  ------------------------------
-        * bcheekati       05-MAY-2020    1.0      initial creation
-        *
-        * Parameters
-        *   train_x:
-        *   train_y:
-        """
+    
         try:
             self.logger.info('Start of finding best params for XGBoost algo...')
             # initializing with different combination of parameters
@@ -125,21 +81,7 @@ class ModelTuner:
 
 
     def get_best_model(self,train_x,train_y,test_x,test_y):
-        """
-        * method: get_best_model
-        * description: method to get best model
-        * return: none
-        *
-        * who             when           version  change (include bug# if apply)
-        * ----------      -----------    -------  ------------------------------
-        * bcheekati       05-MAY-2020    1.0      initial creation
-        *
-        * Parameters
-        *   train_x:
-        *   train_y:
-        *   test_x:
-        *   test_y:
-        """
+       
         try:
             self.logger.info('Start of finding best model...')
             self.xgboost= self.best_params_xgboost(train_x,train_y)

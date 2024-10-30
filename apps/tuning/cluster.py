@@ -9,25 +9,7 @@ from apps.ingestion.load_validate import LoadValidate
 from apps.preprocess.preprocessor import Preprocessor
 
 class KMeansCluster:
-    """
-    *****************************************************************************
-    *
-    * filename:       KMeansCluster.py
-    * version:        1.0
-    * author:         CODESTUDIO
-    * creation date:  05-MAY-2020
-    *
-    * change history:
-    *
-    * who             when           version  change (include bug# if apply)
-    * ----------      -----------    -------  ------------------------------
-    * bcheekati       05-MAY-2020    1.0      initial creation
-    *
-    *
-    * description:    Class to cluster the dataset
-    *
-    ****************************************************************************
-    """
+   
 
     def __init__(self,run_id,data_path):
         self.run_id = run_id
@@ -36,18 +18,7 @@ class KMeansCluster:
         self.fileOperation = FileOperation(self.run_id, self.data_path, 'training')
 
     def elbow_plot(self,data):
-        """
-        * method: log
-        * description: method to saves the plot to decide the optimum number of clusters to the file.
-        * return: A picture saved to the directory
-        *
-        * who             when           version  change (include bug# if apply)
-        * ----------      -----------    -------  ------------------------------
-        * bcheekati       05-MAY-2020    1.0      initial creation
-        *
-        * Parameters
-        *   data:
-        """
+        
         wcss=[] # initializing an empty list --within cluster sum of errors
         try:
             self.logger.info('Start of elbow plotting...')
@@ -72,19 +43,7 @@ class KMeansCluster:
             raise Exception()
 
     def create_clusters(self,data,number_of_clusters):
-        """
-        * method: create_clusters
-        * description: method to create clusters
-        * return: A date frame with cluster column
-        *
-        * who             when           version  change (include bug# if apply)
-        * ----------      -----------    -------  ------------------------------
-        * bcheekati       05-MAY-2020    1.0      initial creation
-        *
-        * Parameters
-        *   data:
-        *   number_of_clusters:
-        """
+    
         self.data=data
         try:
             self.logger.info('Start of Create clusters...')

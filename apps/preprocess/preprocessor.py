@@ -5,44 +5,14 @@ from sklearn.impute import KNNImputer
 from apps.core.logger import Logger
 
 class Preprocessor:
-    """
-    *****************************************************************************
-    *
-    * filename:       Preprocessor.py
-    * version:        1.0
-    * author:         CODESTUDIO
-    * creation date:  05-MAY-2020
-    *
-    * change history:
-    *
-    * who             when           version  change (include bug# if apply)
-    * ----------      -----------    -------  ------------------------------
-    * bcheekati       05-MAY-2020    1.0      initial creation
-    *
-    *
-    * description:    Class to pre-process training and predict dataset
-    *
-    ****************************************************************************
-    """
-
+  
     def __init__(self,run_id,data_path,mode):
         self.run_id = run_id
         self.data_path = data_path
         self.logger = Logger(self.run_id, 'Preprocessor', mode)
 
     def get_data(self):
-        """
-        * method: get_data
-        * description: method to read datafile
-        * return: A pandas DataFrame
-        *
-        * who             when           version  change (include bug# if apply)
-        * ----------      -----------    -------  ------------------------------
-        * bcheekati       05-MAY-2020    1.0      initial creation
-        *
-        * Parameters
-        *   none:
-        """
+       
         try:
             # reading the data file
             self.logger.info('Start of reading dataset...')
@@ -54,19 +24,7 @@ class Preprocessor:
             raise Exception()
 
     def drop_columns(self,data,columns):
-        """
-        * method: drop_columns
-        * description: method to drop columns
-        * return: A pandas DataFrame after removing the specified columns.
-        *
-        * who             when           version  change (include bug# if apply)
-        * ----------      -----------    -------  ------------------------------
-        * bcheekati       05-MAY-2020    1.0      initial creation
-        *
-        * Parameters
-        *   data:
-        *   columns:
-        """
+      
         self.data=data
         self.columns=columns
         try:
@@ -79,18 +37,7 @@ class Preprocessor:
             raise Exception()
 
     def is_null_present(self,data):
-        """
-        * method: is_null_present
-        * description: method to check null values
-        * return: Returns a Boolean Value. True if null values are present in the DataFrame, False if they are not present.
-        *
-        * who             when           version  change (include bug# if apply)
-        * ----------      -----------    -------  ------------------------------
-        * bcheekati       05-MAY-2020    1.0      initial creation
-        *
-        * Parameters
-        *   data:
-        """
+       
         self.null_present = False
         try:
             self.logger.info('Start of finding missing values...')
@@ -111,18 +58,7 @@ class Preprocessor:
             raise Exception()
 
     def impute_missing_values(self, data):
-        """
-        * method: impute_missing_values
-        * description: method to impute missing values
-        * return: none
-        *
-        * who             when           version  change (include bug# if apply)
-        * ----------      -----------    -------  ------------------------------
-        * bcheekati       05-MAY-2020    1.0      initial creation
-        *
-        * Parameters
-        *   data:
-        """
+      
         self.data= data
         try:
             self.logger.info('Start of imputing missing values...')
@@ -137,18 +73,7 @@ class Preprocessor:
             raise Exception()
 
     def feature_encoding(self, data):
-        """
-        * method: feature_encoding
-        * description: method to impute missing values
-        * return: none
-        *
-        * who             when           version  change (include bug# if apply)
-        * ----------      -----------    -------  ------------------------------
-        * bcheekati       05-MAY-2020    1.0      initial creation
-        *
-        * Parameters
-        *   data:
-        """
+
         try:
             self.logger.info('Start of feature encoding...')
             self.new_data = data.select_dtypes(include=['object']).copy()
@@ -164,19 +89,7 @@ class Preprocessor:
 
 
     def split_features_label(self, data, label_name):
-        """
-        * method: split_features_label
-        * description: method to separate features and label
-        * return: none
-        *
-        * who             when           version  change (include bug# if apply)
-        * ----------      -----------    -------  ------------------------------
-        * bcheekati       05-MAY-2020    1.0      initial creation
-        *
-        * Parameters
-        *   data:
-        *   label_name:
-        """
+  
         self.data =data
         try:
             self.logger.info('Start of splitting features and label ...')
@@ -189,18 +102,7 @@ class Preprocessor:
             raise Exception()
 
     def final_predictset(self,data):
-        """
-        * method: final_predictset
-        * description: method to build final predict set by adding additional encoded column with value as 0
-        * return: column_names, Number of Columns
-        *
-        * who             when           version  change (include bug# if apply)
-        * ----------      -----------    -------  ------------------------------
-        * bcheekati       05-MAY-2020    1.0      initial creation
-        *
-        * Parameters
-        *   none:
-        """
+       
         try:
             self.logger.info('Start of building final predictset...')
             with open('apps/database/columns.json', 'r') as f:
@@ -223,18 +125,7 @@ class Preprocessor:
 
 
     def preprocess_trainset(self):
-        """
-        * method: preprocess_trainset
-        * description: method to pre-process training data
-        * return: none
-        *
-        * who             when           version  change (include bug# if apply)
-        * ----------      -----------    -------  ------------------------------
-        * bcheekati       05-MAY-2020    1.0      initial creation
-        *
-        * Parameters
-        *   none:
-        """
+      
         try:
             self.logger.info('Start of Preprocessing...')
             # get data into pandas data frame
@@ -260,18 +151,7 @@ class Preprocessor:
             raise Exception
 
     def preprocess_predictset(self):
-        """
-        * method: preprocess_predictset
-        * description: method to pre-process prediction data
-        * return: none
-        *
-        * who             when           version  change (include bug# if apply)
-        * ----------      -----------    -------  ------------------------------
-        * bcheekati       05-MAY-2020    1.0      initial creation
-        *
-        * Parameters
-        *   none:
-        """
+    
         try:
             self.logger.info('Start of Preprocessing...')
             # get data into pandas data frame
@@ -298,18 +178,7 @@ class Preprocessor:
 
 
     def preprocess_predict(self,data):
-        """
-        * method: preprocess_predict
-        * description: method to pre-process prediction data
-        * return: none
-        *
-        * who             when           version  change (include bug# if apply)
-        * ----------      -----------    -------  ------------------------------
-        * bcheekati       05-MAY-2020    1.0      initial creation
-        *
-        * Parameters
-        *   none:
-        """
+     
         try:
             self.logger.info('Start of Preprocessing...')
             cat_df = self.feature_encoding(data)

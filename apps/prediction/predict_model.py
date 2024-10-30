@@ -6,26 +6,6 @@ from apps.core.file_operation import FileOperation
 
 class PredictModel:
 
-    """
-    *****************************************************************************
-    *
-    * filename:       PredictModel.py
-    * version:        1.0
-    * author:         CODESTUDIO
-    * creation date:  05-MAY-2020
-    *
-    * change history:
-    *
-    * who             when           version  change (include bug# if apply)
-    * ----------      -----------    -------  ------------------------------
-    * bcheekati       05-MAY-2020    1.0      initial creation
-    *
-    *
-    * description:    Class to prediction the result
-    *
-    ****************************************************************************
-    """
-
     def __init__(self,run_id,data_path):
         self.run_id = run_id
         self.data_path = data_path
@@ -35,18 +15,7 @@ class PredictModel:
         self.fileOperation = FileOperation(self.run_id, self.data_path, 'prediction')
 
     def batch_predict_from_model(self):
-        """
-        * method: batch_predict_from_model
-        * description: method to prediction the results
-        * return: none
-        *
-        * who             when           version  change (include bug# if apply)
-        * ----------      -----------    -------  ------------------------------
-        * bcheekati       05-MAY-2020    1.0      initial creation
-        *
-        * Parameters
-        *   none:
-        """
+      
         try:
             self.logger.info('Start of Prediction')
             self.logger.info('run_id:' + str(self.run_id))
@@ -79,18 +48,7 @@ class PredictModel:
 
 
     def single_predict_from_model(self,data):
-        """
-        * method: single_predict_from_model
-        * description: method to prediction the results
-        * return: none
-        *
-        * who             when           version  change (include bug# if apply)
-        * ----------      -----------    -------  ------------------------------
-        * bcheekati       05-MAY-2020    1.0      initial creation
-        *
-        * Parameters
-        *   none:
-        """
+  
         try:
             self.logger.info('Start of Prediction')
             self.logger.info('run_id:' + str(self.run_id))

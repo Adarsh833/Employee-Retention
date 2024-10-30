@@ -7,44 +7,14 @@ import os
 from apps.core.logger import Logger
 
 class DatabaseOperation:
-    """
-    *****************************************************************************
-    *
-    * file_name:       DatabaseOperation.py
-    * version:        1.0
-    * author:         CODESTUDIO
-    * creation date:  05-MAY-2020
-    *
-    * change history:
-    *
-    * who             when           version  change (include bug# if apply)
-    * ----------      -----------    -------  ------------------------------
-    * CODESTUDIO      05-MAY-2020    1.0      initial creation
-    *
-    *
-    * description:    Class to handle database operations
-    *
-    ****************************************************************************
-    """
-
+   
     def __init__(self,run_id,data_path,mode):
         self.run_id = run_id
         self.data_path = data_path
         self.logger = Logger(self.run_id, 'DatabaseOperation', mode)
 
     def database_connection(self,database_name):
-        """
-        * method: database_connection
-        * description: method to build database connection
-        * return: Connection to the DB
-        *
-        * who             when           version  change (include bug# if apply)
-        * ----------      -----------    -------  ------------------------------
-        * CODESTUDIO      05-MAY-2020    1.0      initial creation
-        *
-        * Parameters
-        *   database_name:
-        """
+        
         try:
             conn = sqlite3.connect('apps/database/'+database_name+'.db')
             self.logger.info("Opened %s database successfully" % database_name)
@@ -54,19 +24,7 @@ class DatabaseOperation:
         return conn
 
     def create_table(self,database_name,table_name, column_names):
-        """
-        * method: create_table_db
-        * description: method to create database table
-        * return: none
-        *
-        * who             when           version  change (include bug# if apply)
-        * ----------      -----------    -------  ------------------------------
-        * bcheekati       05-MAY-2020    1.0      initial creation
-        *
-        * Parameters
-        *   database_name:
-        *   column_names:
-        """
+      
 
         try:
             self.logger.info('Start of Creating Table...')
@@ -100,18 +58,7 @@ class DatabaseOperation:
             raise e
 
     def insert_data(self,database_name,table_name):
-        """
-        * method: insert
-        * description: method to insert data into table
-        * return: none
-        *
-        * who             when           version  change (include bug# if apply)
-        * ----------      -----------    -------  ------------------------------
-        * bcheekati       05-MAY-2020    1.0      initial creation
-        *
-        * Parameters
-        *   database_name:
-        """
+       
         conn = self.database_connection(database_name)
         good_data_path= self.data_path
         bad_data_path = self.data_path+'_rejects'
@@ -144,18 +91,7 @@ class DatabaseOperation:
         self.logger.info('End of Inserting Data into Table...')
 
     def export_csv(self,database_name,table_name):
-        """
-        * method: export_csv
-        * description: method to select data from table in export into csv
-        * return: none
-        *
-        * who             when           version  change (include bug# if apply)
-        * ----------      -----------    -------  ------------------------------
-        * bcheekati       05-MAY-2020    1.0      initial creation
-        *
-        * Parameters
-        *   database_name:
-        """
+        
         self.file_from_db = self.data_path+str('_validation/')
         self.file_name = 'InputFile.csv'
         try:
